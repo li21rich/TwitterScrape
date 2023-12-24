@@ -1,7 +1,7 @@
 # TwitterScrape
 Scrapes Twitter for tweet posts by search query Using Selenium. This repository is not convenient to repurpose, so it may require some patience.
 
-REQUIREMENTS
+# REQUIREMENTS
 If you wish to repurpose and use, you will need to go through the code and fill the places I commented, i.e. line 21 of twitterbot.py needs to be replaced with the URL you wish to scrape and credentials.txt will need to be have your bot details.
 Also, you must install and add chromedriver: https://chromedriver.chromium.org/downloads
 The code will not work without these adjustments.
