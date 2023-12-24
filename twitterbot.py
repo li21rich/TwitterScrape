@@ -18,7 +18,7 @@ class Twitterbot:
 		#chrome_options.add_argument("--headless")  # Make headless if desired.
 		path = os.getcwd()
 		path_join = os.path.join(path, 'chromedriver\chromedriver.exe')
-		chromedriver_path = r"C:\Users\w1373\PycharmProjects\TwitterScrape\chromedriver\chromedriver.exe" #Insert file path to chromedriver.exe here
+		chromedriver_path = r"FILE PATH" #Insert file path to chromedriver.exe here
 		#print(path_join)
 
 		self.bot = webdriver.Chrome(
