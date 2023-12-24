@@ -99,5 +99,5 @@ class Twitterbot:
 			# Get tweet text
 			tweet_text = tweet_element.text
 			print(tweet_text)
-		# fetches the main homepage
+		#  homepage
 		bot.get('https://twitter.com/')
