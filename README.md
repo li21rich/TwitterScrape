@@ -1,5 +1,5 @@
 # TwitterScrape
-Scrapes Twitter Using Selenium. In this case I created this for the purpose of scraping posts concerning the Just Stop Oil protests
+Scrapes Twitter for tweet posts by search query Using Selenium. In this case I created this for the purpose of scraping posts concerning the Just Stop Oil protests
 
 REQUIREMENTS
 If you wish to repurpose and use, you will need to go through the code and fill the places I commented, i.e. line 21 of twitterbot.py needs to be replaced with the URL you wish to scrape and credentials.txt will need to be have your bot details.
