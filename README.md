@@ -6,4 +6,6 @@ If you wish to repurpose and use, you will need to go through the code and fill 
 Also, you must install and add chromedriver: https://chromedriver.chromium.org/downloads
 The code will not work without these adjustments.
 
+time.sleep should be adjusted based on your internet speeds and willingness to risk Twitter security
+
 This project was designed in windows. Modifications may need to be made for Linux and others. 
