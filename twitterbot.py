@@ -15,7 +15,7 @@ class Twitterbot:
 		self.email = email
 		self.password = password
 		chrome_options = webdriver.ChromeOptions()
-		#chrome_options.add_argument("--headless")  # Make headless if desired.
+		#chrome_options.add_argument("--headless")  # Make headless if desired by uncommenting this.
 		path = os.getcwd()
 		path_join = os.path.join(path, 'chromedriver\chromedriver.exe')
 		chromedriver_path = r"FILE PATH" #Insert file path to chromedriver.exe here
@@ -69,11 +69,11 @@ class Twitterbot:
 		"""
 	def scrape(self, desiredTweets):
 		bot = self.bot
-		bot.get("https://twitter.com/search?q=Just%20Stop%20Oil%20OR%20JustStopOil&src=typed_query") #paste your desired search URL here
+		bot.get("SEARCH FIELD") #paste your desired search URL here
 		time.sleep(3)
 		#set - avoid redundancy
 		links = set();
-		n = int(desiredTweets/7.333333)
+		n = int(desiredTweets/7.333333) #7.3333 - average number of tweets per scrollHeight page. Dumbed down method of approximating tweet result number.
 		for _ in range(n):
 			# javascript scroll
 			bot.execute_script('window.scrollTo(0, document.body.scrollHeight)')
