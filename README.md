@@ -4,7 +4,8 @@ Logs in by provided username, email, and password, and then goes to a provided s
 
 ## Requirements
 After downloading, **install and add chromedriver**: https://chromedriver.chromium.org/downloads.<br />
-You will need to have a twitter account to run the bot on. Run main.py and provide the details given.<br />
+You will need to have Selenium and Python. 
+You will also need to have a twitter account to run the bot on. Run main.py and provide the details given.<br />
 Usages of time.sleep in twitterbot.py should be adjusted based on your internet speed -- if the loading time is slower, then the sleep times need to be longer. <br />
 This project was designed in Windows. Modifications may need to be made for Linux and others.  
 
