@@ -1,6 +1,6 @@
 # TwitterScrape
 Scrapes Twitter (also known as X) using Selenium webdriver.<br />
-Logs in by provided username, email, and password, and then goes to a provided search URL, giving date, statistics, and contents of any number of tweets associated with the search.
+Logs in by provided username, email, and password, and then goes to a provided search URL, giving the date, statistics, and contents of any number of tweets associated with the search.
 
 ## Requirements
 After downloading, **install and add chromedriver**: https://chromedriver.chromium.org/downloads.\
