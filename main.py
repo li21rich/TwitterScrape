@@ -1,16 +1,21 @@
 import twitterbot as tb
-import secrets, sys
 
-twitter_user = input("Enter bot twitter username: ")
-# gets credentials dictionary
-credentials = secrets.get_credentials()
-# creates bot using credentials
-bot = tb.Twitterbot(credentials['email'], credentials['password'])
-# log in process
+email = input("Enter bot twitter email: ")
+username = input("Enter bot twitter username: ")
+password = input("Enter bot twitter password: ")
+headless = input("Enter \"yes\" to hide scraping window (enable headless): ")
+login_method = input("Enter \"username\" to log in with username or enter \"email\" to log in with email")
+
+minimum = input("Enter minimum number of tweets to scrape: ")
+query = input("Enter search URL to scrape (i.e. https://twitter.com/search?q=Search%20Query%20OR%20SearchQuery&src=typed_query): ")
+
 try:
-    bot.login(twitter_user)
+    bot = tb.Twitterbot(email, password, username, headless)
+    if login_method.lower() == "username":
+        bot.loginWithUsername()
+    else:
+        bot.loginWithEmail
 except Exception as e:
-    print(e)
-# START SCRAPE
-desiredTweets = 20
-bot.scrape(desiredTweets)
+    print("Invalid input. Please double check account credentials and ensure that you have inputted valid parameters")
+
+bot.scrape(minimum, query)
