@@ -1,4 +1,3 @@
-<pre>
 # TwitterScrape
 Scrapes Twitter (also known as X) using Selenium webdriver.<br />
 Logs in by provided username, email, and password, and then goes to a provided search URL, giving date, statistics, and contents of any number of tweets associated with the search.
@@ -12,8 +11,7 @@ This project was designed in Windows. Modifications may need to be made for Linu
 
 ## Tips
 Running it will prompt for *email*, *username*, *password*, *headless*, *login_method*, *minimum*, and *query*.\
-  *email*, *username*, *password*: These must be the credentials of **your twitter account**. It is recommended that you create a burner account for this. \
-  *headless*: Enabling headless by typing "yes" will make it so the bot window is hidden from your desktop. Leaving headless as disabled will allow you to watch the process live.\
-  *login_method*: Login method can be either by username or email. Username may be the quicker process but either should be fine.\
-  *minimum*: Minimum refers to the number of tweets you want to scrape. Enter a whole number.
-</pre>
+<pre>  </pre>*email*, *username*, *password*: These must be the credentials of **your twitter account**. It is recommended that you create a burner account for this. \
+<pre>  </pre>*headless*: Enabling headless by typing "yes" will make it so the bot window is hidden from your desktop. Leaving headless as disabled will allow you to watch the process live.\
+<pre>  </pre>*login_method*: Login method can be either by username or email. Username may be the quicker process but either should be fine.\
+<pre>  </pre>*minimum*: Minimum refers to the number of tweets you want to scrape. Enter a whole number.
