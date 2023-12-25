@@ -1,103 +1,83 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
+from selenium.webdriver.support.relative_locator import locate_with
 from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome.options import Options
 import time, os
 
 class Twitterbot:
-	def __init__(self, email, password):
-		"""Constructor
-		Arguments:
-			email {string} -- registered twitter email
-			password {string} -- password for the twitter account
-		"""
+	def __init__(self, email, password, username, headless):
 		self.email = email
 		self.password = password
+		self.username = username
+
 		chrome_options = webdriver.ChromeOptions()
-		#chrome_options.add_argument("--headless")  # Make headless if desired by uncommenting this.
-		path = os.getcwd()
-		path_join = os.path.join(path, 'chromedriver\chromedriver.exe')
-		chromedriver_path = r"FILE PATH" #Insert file path to chromedriver.exe here
-		#print(path_join)
+		if headless.lower() == "yes":
+			chrome_options.add_argument("--headless")
 
 		self.bot = webdriver.Chrome(
 			options=chrome_options,
-			# executable_path=path_join,
 		)
 
-	def login(self, usernameString):
-		#sign in with email and password
+	def loginWithEmail(self):
 		bot = self.bot
-		# fetches the login page
-		#bot.get('https://twitter.com/login')
 		bot.get('https://twitter.com/i/flow/login')
-
 		time.sleep(3)
 
-		email = bot.find_element("xpath", '//input[@autocomplete="username"]')
-		# sends the email to the email input
-		email.send_keys(self.email)
-
-		email.send_keys(Keys.RETURN)
+		email_field = bot.find_element("xpath", '//input[@autocomplete="username"]')
+		email_field.send_keys(self.email)
+		email_field.send_keys(Keys.RETURN)
 		time.sleep(3)
-		"""
-		file_path = "output.html"
-		with open(file_path, "w", encoding="utf-8") as file:
-			file.write(bot.page_source)
-		"""
+
 		try:
-			print("Suspicious activity detected")
-			username = bot.find_element("xpath", '//input[@autocomplete="on" and @name="text"]')
-			# sends the email to the email input
-			username.send_keys(usernameString)
-			username.send_keys(Keys.RETURN)
-			print("Username check bypassed")
+			username_field = bot.find_element("xpath", '//input[@autocomplete="on" and @name="text"]')
+			username_field.send_keys(self.username)
+			username_field.send_keys(Keys.RETURN)
+			time.sleep(1)
 		except Exception as e:
-			print("No suspicious activity detected")
-		time.sleep(3)
-		password = bot.find_element("xpath", '//input[@autocomplete="current-password"]')
-		# sends the password to the password input
-		password.send_keys(self.password)
-		# executes RETURN key action
-		password.send_keys(Keys.RETURN)
+			time.sleep(1)
+
+		password_field = bot.find_element("xpath", '//input[@autocomplete="current-password"]')
+		password_field.send_keys(self.password)
+		password_field.send_keys(Keys.RETURN)
 		time.sleep(5)
-		"""
-		file_path = "finalOutput.html"
-		with open(file_path, "w", encoding="utf-8") as file:
-			file.write(bot.page_source)
-		"""
-	def scrape(self, desiredTweets):
+
+	def loginWithUsername(self):
 		bot = self.bot
-		bot.get("SEARCH FIELD") #paste your desired search URL here
+		bot.get('https://twitter.com/i/flow/login')
 		time.sleep(3)
-		#set - avoid redundancy
-		links = set();
-		n = int(desiredTweets/7.333333) #7.3333 - average number of tweets per scrollHeight page. Dumbed down method of approximating tweet result number.
-		for _ in range(n):
-			# javascript scroll
-			bot.execute_script('window.scrollTo(0, document.body.scrollHeight)')
-			time.sleep(5)
-			# iterating links
-			elems = bot.find_elements(
-				"xpath", "//a[@role='link' and contains(@href, 'status') and not(contains(@href, 'analytics')) and not(contains(@href, 'photo')) and not(contains(@href, 'people'))]"
-			)
-			# print("elems:", elems)
-			for elem in elems:
-				href = elem.get_attribute('href')
-				# print(f'href:{href}')
-				links.add(href)
-		# iterating through links
-		count = 0
-		for link in links:
-			count +=1
-			print(count, ">{!}------------------------")
-			# open link
-			bot.get(link)
-			time.sleep(3)
-			tweet_element = bot.find_element("xpath", '//div[@data-testid="tweetText"]')
-			# Get tweet text
-			tweet_text = tweet_element.text
-			print(tweet_text)
-		#  homepage
-		bot.get('https://twitter.com/')
+
+		email_field = bot.find_element("xpath", '//input[@autocomplete="username"]')
+		email_field.send_keys(self.username)
+		email_field.send_keys(Keys.RETURN)
+		time.sleep(2)
+
+		password_field = bot.find_element("xpath", '//input[@autocomplete="current-password"]')
+		password_field.send_keys(self.password)
+		password_field.send_keys(Keys.RETURN)
+		time.sleep(5)
+
+	def scrape(self, minTweets, query):
+			bot = self.bot
+			bot.get(query)
+			print("Scanning:", query)
+			time.sleep(4)
+			count = 0
+			results = ""
+			while count < minTweets:
+				bot.execute_script('window.scrollTo(0, document.body.scrollHeight)')
+				time.sleep(1)
+				elements = bot.find_elements("xpath", "//article[@data-testid='tweet']")
+				for elem in elements:
+					text = str(elem.find_element("xpath", ".//div[@data-testid='tweetText']").text)
+					analytic = str(elem.find_element("xpath", ".//div[@role='group']").get_attribute('aria-label'))
+					date = str(elem.find_element("xpath", ".//time").get_attribute('datetime'))
+					count += 1
+					result = str(":::> #" + str(count) + ". " + analytic + " " + date + " <:::\n" + text )
+					print(result)
+					results += result + "\n"
+			bot.get("https://twitter.com/home")
+			file_path = "output.html"
+			with open(file_path, "w", encoding="utf-8") as file:
+				file.write(results)
+			return results
