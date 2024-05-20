@@ -13,7 +13,7 @@ This project was designed in Windows. Modifications may need to be made for Linu
 Running it will prompt for *email*, *username*, *password*, *headless*, *login_method*, *minimum*, and *query*.\
 &nbsp;&nbsp;*email*, *username*, *password*: These must be the credentials of **your twitter account**. It is recommended that you use a new burner account.\
 &nbsp;&nbsp;*headless*: Enabling headless* by typing "yes" will make it so the bot window is hidden (runs faster). Leaving headless disabled will display the process live.\
-&nbsp;&nbsp;&nbsp;&nbsp;(*UPDATE: As of prior to May 19, 2024, it appears that headless is no longer supported by Twitter.\)
+&nbsp;&nbsp;&nbsp;&nbsp;(*UPDATE: As of prior to May 19, 2024, it appears that headless is no longer supported by Twitter.)\
 &nbsp;&nbsp;*login_method*: Login method can be either by username or email. Username may be the quicker process but either should be fine.\
 &nbsp;&nbsp;*minimum*: Minimum refers to the number of tweets you want to scrape. Enter a whole number.\
 &nbsp;&nbsp;*query*: Link to search page. You can find one by going to Twitter, typing in the desired search query (or use advanced search), and copying the URL at the top of the page.
