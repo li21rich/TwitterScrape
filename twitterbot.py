@@ -14,7 +14,7 @@ class Twitterbot:
 		chrome_options.add_argument("--headless") if headless.lower() == "yes" else None
 		self.bot = webdriver.Chrome(options=chrome_options,)
 
-	def login_with_email(self):
+	def login_with_email(self): # unused
 		bot = self.bot
 		bot.get('https://twitter.com/i/flow/login')
 		email_field = WebDriverWait(bot, 10).until(ec.visibility_of_element_located(('xpath', '//input[@autocomplete="username"]')))
@@ -28,7 +28,7 @@ class Twitterbot:
 		password_field.send_keys(self.password, Keys.RETURN)
 		time.sleep(1)
 
-	def login_with_username(self):
+	def login_with_username(self): 
 		bot = self.bot
 		bot.get('https://twitter.com/i/flow/login')
 		email_field = WebDriverWait(bot, 10).until(ec.presence_of_element_located(('xpath', '//input[@autocomplete="username"]')))
