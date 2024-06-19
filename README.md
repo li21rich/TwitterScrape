@@ -11,5 +11,5 @@ To use the program, run main.py and provide the details described in the tips be
 ## Tips
 Running it will prompt for *username*, *password*, *minimum*, and *query*.\
 &nbsp;&nbsp;*username* & *password*: These must be the credentials of **your twitter account**. It is recommended that you use a throwaway account.\
-&nbsp;&nbsp;*minimum*: Minimum refers to the number of tweets you want to scrape. Enter a whole number.\
+&nbsp;&nbsp;*minimum*: Minimum refers to the number of tweets you want to scrape. Enter an integer.\
 &nbsp;&nbsp;*query*: The search page link. You can go to Twitter, enter a search query (or use advanced search), and copy the resulting page URL.
