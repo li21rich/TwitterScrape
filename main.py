@@ -1,6 +1,7 @@
 import twitterbot as tb
 
-email = input("Enter bot twitter email: ")
+#email = input("Enter bot twitter email: ")
+email = "" #email login method can be used but is unneeded
 username = input("Enter bot twitter username: ")
 password = input("Enter bot twitter password: ")
 headless = "no";
