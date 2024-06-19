@@ -10,7 +10,8 @@ query = input("Enter search URL to scrape ( i.e. https://twitter.com/search?q=Se
 try:
     bot = tb.Twitterbot(email, password, username, headless)
     bot.loginWithUsername()
+    bot.scrape(minimum, query)
 except Exception as e:
     print("Invalid input. Please double check account credentials and ensure that you have inputted valid parameters")
+    print(e)
 
-bot.scrape(minimum, query)
