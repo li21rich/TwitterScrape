@@ -5,8 +5,8 @@ Logs in by provided username, email, and password, and then goes to a provided s
 ## Requirements
 After downloading, **install and add chromedriver**: https://chromedriver.chromium.org/downloads.\
 You will need Selenium and Python. \
-You will also need a Twitter account to run the bot on. 
-To use the program, run main.py and provide the details described in the tips below.\
+You will also need a Twitter account to run the bot on. \
+To use the program, run main.py and provide the details described in the tips below.
 
 ## Tips
 Running it will prompt for *email*, *username*, *password*, *minimum*, and *query*.\
