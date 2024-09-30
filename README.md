@@ -1,4 +1,7 @@
-# TwitterScrape
+# SIMPLIFIED VERSION of Twitter Scrape
+This repo  is the shortened, generalized version of the Twitter Scraping tool I developed for research analysis of the environmental action situation in the UK. Contact lilrichardh@gmail.com for the original full version.
+
+# Usage
 Scrapes Twitter (also known as X) using Selenium webdriver.<br />
 Logs in by provided username and password, and then goes to a provided search URL, giving the date, statistics, and contents of any number of tweets associated with the search.
 
