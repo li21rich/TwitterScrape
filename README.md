@@ -1,5 +1,5 @@
 # SIMPLIFIED VERSION of Twitter Scrape
-This repo  is the shortened, generalized version of the Twitter Scraping tool I developed for research analysis of the environmental action situation in the UK. Contact lilrichardh@gmail.com for the original full version.
+This repo  is the shortened, generalized, and more reusable version of the Twitter Scraping tool I developed for research analysis of the environmental action situation in the UK. Contact ![image](https://github.com/user-attachments/assets/404a3e78-4c65-40b6-baa7-aa77fa26a2c1) for the original full version.
 
 # Usage
 Scrapes Twitter (also known as X) using Selenium webdriver.<br />
