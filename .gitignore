@@ -10,9 +10,5 @@ __pycache__/
 .idea/
 *.code-workspace
 
-# Binaries
-chromedriver/
-
 # Generated outputs
-*.html
-*.csv
+output.txt

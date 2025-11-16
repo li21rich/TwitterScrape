@@ -18,7 +18,7 @@ headless = input("5. Enter \"yes\" to hide scraping browser window while scrapin
 advanced = input("6. Enter \"yes\" for scraping-by-month or \"no\" for simple scrape [Default: no]: ")  #  Monthly scraping is useful for observational research studies. You can modify the code in twitterbot.py to suit your needs.
 
 # This chunk of text is just so you can paste in a URL to scrape:
-print("\nNow generate a search query. Go to twitter.com and type your search query into the search bar. You may use quotation marks to look for exact phrases, OR/AND operands to condition your search, hashtags, and other search operators to make your search precise. For example, entering")
+print("\n7. Now to generate a search query:\n\nGo to twitter.com and type your search query into the search bar.\nYou may use quotation marks to look for exact phrases, OR/AND operands to condition your search, hashtags, and other search operators to make your search precise. For example, entering")
 print("   #juststopoil OR \"Just Stop Oil\" OR \"JustStopOil\"   ")
 print("into Twitter's search bar will produce a search for tweets containing the hashtag for juststopoil, or the exact phrase \"Just Stop Oil\", or the exact phrase \"JustStopOil\"")
 print("You may also append search operators like \"since:2022-02-14\" or \"lang:en\" to further narrow your search. For more examples of search syntax, see https://developer.x.com/en/docs/x-api/v1/rules-and-filtering/search-operators")
@@ -38,17 +38,17 @@ end_date = 0  # used for advanced scrape
 months = 0  # used for advanced scrape
 cap = 0  # used for advanced scrape
 if advanced.lower() == "yes":
-    start_date = input("\nNow enter the start date to scrape from, YYYY-MM-DD (i.e. 2022-02-14): ")
+    start_date = input("\n8. Now enter the start date to scrape from, YYYY-MM-DD (i.e. 2022-02-14): ")
     end_date = tb.increment_month(start_date)
-    months = input("Up to how many months would you like to scrape for? ")
-    cap = input("How many tweets at maximum per month? Default value is 50: ")  # Pressing enter defaults to 50. Higher values allow for greater sample sizes, but if the value is greater than the amount of tweets posted in the world in a given month, you potentially may face issues.
+    months = input("9. Up to how many months would you like to scrape for? ")
+    cap = input("10. How many tweets at maximum per month? Default value is 50: ")  # Pressing enter defaults to 50. Higher values allow for greater sample sizes, but if the value is greater than the amount of tweets posted in the world in a given month, you potentially may face issues.
     if cap == "":
         cap = 50
-    sort = input("Enter \"yes\" to scrape tweets in order of trending/popularity (sort by top). Enter \"no\" to sort by recency instead: ")  # Pressing enter defaults to no. Sorting by top can be helpful for a sample size biased toward popular tweets. Sorting by recency can be helpful for a more representative sample.
+    sort = input("11. Enter \"yes\" to scrape tweets in order of trending/popularity (sort by top). Enter \"no\" to sort by recency instead: ")  # Pressing enter defaults to no. Sorting by top can be helpful for a sample size biased toward popular tweets. Sorting by recency can be helpful for a more representative sample.
     if sort == "":
         sort = "no"
 else:
-    minimum = input("\nEnter minimum number of tweets to scrape: ")  # Pressing enter defaults to 10. Program will attempt to scrape at least this many tweets, if not more.
+    minimum = input("\n8. Enter minimum number of tweets to scrape: ")  # Pressing enter defaults to 10. Program will attempt to scrape at least this many tweets, if not more.
     if minimum == "":
         minimum = 10
 
@@ -57,10 +57,10 @@ else:
 
 try:
     bot = tb.Twitterbot(email, password, username, headless)
-    if login_method.lower() == "no":
-        bot.login_with_username()
+    if login_method.lower() == "yes":
+        bot.login_with_email
     else:
-        bot.login_with_email()
+        bot.login_with_username_like_human()
 except Exception as e:
     print("Invalid input. Please double check account credentials and ensure that you have inputted valid parameters.")
     print(e)

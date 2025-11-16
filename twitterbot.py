@@ -1,9 +1,11 @@
-import time
+import time, random
+from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
-from datetime import datetime
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager 
 
 
@@ -17,6 +19,13 @@ def increment_month(date_str):
 		month += 1
 	return datetime(year, month, 1).strftime("%Y-%m-%d")
 
+def human_type(bot, element, text):
+	actions = ActionChains(bot)
+	actions.move_to_element(element).click().perform()
+	for char in text:
+		element.send_keys(char)
+		time.sleep(random.uniform(0.02, 0.2))  # simulate human typing
+
 
 class Twitterbot:
 	def __init__(self, email, password, username, headless):
@@ -24,8 +33,13 @@ class Twitterbot:
 		self.password = password
 		self.username = username
 		chrome_options = webdriver.ChromeOptions()
-		chrome_options.add_argument("--headless") if headless.lower() == "yes" else None
-		self.bot = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+		if headless.lower() == "yes": chrome_options.add_argument("--headless")
+		chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+		chrome_options.add_experimental_option("useAutomationExtension", False)
+		self.bot = webdriver.Chrome(
+			service=Service(ChromeDriverManager().install()),
+			options=chrome_options
+		)
 
 	def login_with_email(self):
 		bot = self.bot
@@ -41,13 +55,35 @@ class Twitterbot:
 		password_field.send_keys(self.password, Keys.RETURN)
 		time.sleep(1)
 
-	def login_with_username(self):
+	def login_with_username(self): # old version
 		bot = self.bot
 		bot.get('https://twitter.com/i/flow/login')
 		email_field = WebDriverWait(bot, 10).until(ec.presence_of_element_located(('xpath', '//input[@autocomplete="username"]')))
+		actions = ActionChains(bot)
+		actions.move_to_element(email_field).click().pause(0.5).send_keys("myemail@example.com").perform()
 		email_field.send_keys(self.username, Keys.RETURN)
 		password_field = WebDriverWait(bot, 10).until(ec.presence_of_element_located(('xpath', '//input[@autocomplete="current-password"]')))
 		password_field.send_keys(self.password, Keys.RETURN)
+		time.sleep(1)
+
+	def login_with_username_like_human(self):
+		bot = self.bot
+		bot.get('https://twitter.com/i/flow/login')
+
+		# Username/email field
+		username_field = WebDriverWait(bot, 10).until(
+			ec.presence_of_element_located(('xpath', '//input[@name="text"]'))
+		)
+		human_type(bot, username_field, self.username)
+		username_field.send_keys(Keys.RETURN)
+
+		# Password field
+		password_field = WebDriverWait(bot, 10).until(
+			ec.presence_of_element_located(('xpath', '//input[@name="password"]'))
+		)
+		human_type(bot, password_field, self.password)
+		password_field.send_keys(Keys.RETURN)
+
 		time.sleep(1)
 
 	def scrape(self, mintweets, query):
