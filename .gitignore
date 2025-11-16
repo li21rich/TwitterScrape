@@ -1,0 +1,18 @@
+# Virtual environments
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE/project files
+.idea/
+*.code-workspace
+
+# Binaries
+chromedriver/
+
+# Generated outputs
+*.html
+*.csv
